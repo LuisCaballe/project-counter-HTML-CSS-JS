@@ -1,96 +1,90 @@
 const startCounter = (buttonAction) => {
-     
-     const maxOrMinBoxId = document.getElementById('max-min-box');
-     const numberToShowId = document.getElementById('number-to-show');
+  const maxOrMinBoxSelector = document.querySelector('.max-min-box');
+  const numberToShowSelector = document.querySelector('.number-to-show');
 
-     let numberToShow = Number(numberToShowId.textContent);
+  let numberToShow = Number(numberToShowSelector.textContent);
 
-     const maximumNumber = 10;
-     const minimumNumber = 0;
+  const maximumNumber = 10;
+  const minimumNumber = 0;
 
-     const showNumber = () => {
-          numberToShowId.textContent = numberToShow;
-     };
+  const showNumber = () => {
+    numberToShowSelector.textContent = numberToShow;
+  };
 
-     const showMaximumNumberReached = () => {
-          maxOrMinBoxId.textContent = 'MAXIMUM NUMBER REACHED';
-          maxOrMinBoxId.style.display = 'block';
-     };
+  const showMaximumNumberReached = () => {
+    maxOrMinBoxSelector.textContent = 'MAXIMUM NUMBER REACHED';
+    maxOrMinBoxSelector.removeAttribute('hidden');
+  };
 
-     const showMinimumNumberReached = () => {
-          maxOrMinBoxId.textContent = 'MINIMUM NUMBER REACHED';
-          maxOrMinBoxId.style.display = 'block';
-     };
+  const showMinimumNumberReached = () => {
+    maxOrMinBoxSelector.textContent = 'MINIMUM NUMBER REACHED';
+    maxOrMinBoxSelector.removeAttribute('hidden');
+  };
 
-     const hideMinOrMaxReached = () => {
-          maxOrMinBoxId.style.display = 'none';
-     };
+  const hideMinOrMaxReached = () => {
+    maxOrMinBoxSelector.setAttribute('hidden', '');
+  };
 
-     const disableButton = (buttonId) => {
-          document.getElementById(buttonId).style.border = '2px solid lightgray';
-          document.getElementById(buttonId).style.color = 'lightgray';
-          document.getElementById(buttonId).style.pointerEvents = 'none';
-     };
+  const disableButton = (buttonClassName) => {
+    document.querySelector(buttonClassName).setAttribute('disabled', '');
+  };
 
-     const enableButton = (buttonId) => {
-          document.getElementById(buttonId).style.border = '2px solid black';
-          document.getElementById(buttonId).style.color = 'black';
-          document.getElementById(buttonId).style.pointerEvents = 'auto';
-          document.getElementById(buttonId).style.cursor = 'pointer';
-     };
+  const enableButton = (buttonClassName) => {
+    document.querySelector(buttonClassName).removeAttribute('disabled');
+  };
 
-     const incrementNumber = () => {
-          if (numberToShow < maximumNumber) {
-               numberToShow += 1;
-               if (numberToShow < maximumNumber) {
-                    showNumber();
-                    hideMinOrMaxReached();
-                    enableButton('decrement-button');
-                    enableButton('restart-button');
-               }
-               if (numberToShow === maximumNumber) {
-                    showNumber();
-                    showMaximumNumberReached();
-                    disableButton('increment-button');
-               }
-          }
-     };
+  const incrementNumber = () => {
+    if (numberToShow < maximumNumber) {
+      numberToShow += 1;
+      if (numberToShow < maximumNumber) {
+        showNumber();
+        hideMinOrMaxReached();
+        enableButton('.decrement');
+        enableButton('.restart');
+      }
+      if (numberToShow === maximumNumber) {
+        showNumber();
+        showMaximumNumberReached();
+        disableButton('.increment');
+      }
+    }
+  };
 
-     const decrementNumber = () => {
-          if (numberToShow > minimumNumber) {
-               numberToShow -= 1;
-               if (numberToShow > minimumNumber) {
-                    showNumber();
-                    hideMinOrMaxReached();
-                    enableButton('increment-button');
-               }
-               if (numberToShow === minimumNumber) {
-                    showNumber();
-                    showMinimumNumberReached();
-                    disableButton('decrement-button');
-                    disableButton('restart-button');
-               }
-          }
-     };
+  const decrementNumber = () => {
+    if (numberToShow > minimumNumber) {
+      numberToShow -= 1;
+      if (numberToShow > minimumNumber) {
+        showNumber();
+        hideMinOrMaxReached();
+        enableButton('.increment');
+      }
+      if (numberToShow === minimumNumber) {
+        showNumber();
+        showMinimumNumberReached();
+        disableButton('.decrement');
+        disableButton('.restart');
+      }
+    }
+  };
 
-     const restartNumber = () => {
-          numberToShow = 0;
-          showNumber();
-          hideMinOrMaxReached();
-          enableButton('increment-button');
-          disableButton('decrement-button');
-          disableButton('restart-button');
-     };
+  const restartNumber = () => {
+    numberToShow = 0;
+    showNumber();
+    hideMinOrMaxReached();
+    enableButton('.increment');
+    disableButton('.decrement');
+    disableButton('.restart');
+  };
 
-     switch (buttonAction.className) {
-          case 'increment':
-               incrementNumber();
-               break;
-          case 'decrement':
-               decrementNumber();
-               break;
-          case 'restart':
-               restartNumber();
-               break;
-     }
+  switch (buttonAction.className) {
+    case 'increment':
+      incrementNumber();
+      break;
+    case 'decrement':
+      decrementNumber();
+      break;
+    case 'restart':
+      restartNumber();
+      break;
+  }
 };
