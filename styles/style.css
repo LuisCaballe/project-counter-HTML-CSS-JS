@@ -1,68 +1,70 @@
 * {
-     margin: 0;
-     padding: 0;
-     box-sizing: border-box;
-     font-family: 'Space Mono', monospace;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Space Mono', monospace;
 }
 
 html,
 body {
-     height: 100%;
-     width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
 .container {
-     height: 75%;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     flex-direction: column;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .max-min-box {
-     width: 480px;
-     height: 24px;
-     margin-bottom: -24px;
-     text-align: center;
-     background-color: black;
-     color: white;
-     display: none;
+  width: 480px;
+  height: 24px;
+  margin-bottom: -24px;
+  text-align: center;
+  background-color: black;
+  color: white;
+  box-shadow: 10px 10px black;
+  z-index: 0;
 }
 
 .counter {
-     width: 480px;
-     padding: 10px 10px 10px 10px;
-     border: 2px solid black;
-     box-shadow: 10px 10px black;
-     position: relative;
-     top: 24px;
+  width: 480px;
+  padding: 10px 10px 10px 10px;
+  border: 2px solid black;
+  box-shadow: 10px 10px black;
+  position: relative;
+  top: 24px;
+  z-index: 1;
+  background-color: white;
 }
 
 .button-container {
-     display: flex;
-     justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .counter p {
-     margin: 0;
-     padding: 0;
-     text-align: center;
-     font-weight: 700;
-     font-size: 64px;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-weight: 700;
+  font-size: 64px;
 }
 
 .counter button {
-     font-size: 16px;
-     background-color: white;
-     border: 2px solid black;
-     padding: 10px 20px;
-     margin: 10px 10px;
-     cursor: pointer;
+  font-size: 16px;
+  background-color: white;
+  border: 2px solid black;
+  padding: 10px 20px;
+  margin: 10px 10px;
+  cursor: pointer;
 }
 
-#decrement-button,
-#restart-button {
-     border: 2px solid lightgray;
-     color: lightgray;
-     pointer-events: none;
+.counter button[disabled] {
+  border: 2px solid lightgray;
+  color: lightgray;
+  pointer-events: none;
 }
